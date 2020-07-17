@@ -10,22 +10,29 @@
     
     <StackLayout Spacing="20" Padding="15">
         <!--<Label Text="Course:" FontSize="Medium" />-->
-        <Picker x:Name="NoteCourse" Title="Note Course" FontSize="Medium">
-            <Picker.ItemsSource>
+        <Picker ItemsSource="{Binding CourseList}"
+                SelectedItem="{Binding Note.Course}"
+            x:Name="NoteCourse" Title="Note Course" FontSize="Medium">
+            
+            <!--<Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>First</x:String>
                     <x:String>Second</x:String>
                     <x:String>Third</x:String>
                 </x:Array>
                 
-            </Picker.ItemsSource>
+            </Picker.ItemsSource>-->
             
         </Picker>
         <!--<Label Text="Heading:" FontSize="Medium"/>-->
-        <Entry x:Name="NoteHeading" Placeholder="Note Heading" FontSize="Medium"/>
+        <Entry Text="{Binding Note.Heading}"
+            x:Name="NoteHeading" 
+               Placeholder="Note Heading" 
+               FontSize="Medium"/>
         
         <!--<Label Text="Text:" FontSize="Medium" />-->
-        <Editor x:Name="NoteText" Placeholder="Note Text" AutoSize="TextChanges" FontSize="Medium"/>
+        <Editor  Text="{Binding Note.Text}"
+            x:Name="NoteText" Placeholder="Note Text" AutoSize="TextChanges" FontSize="Medium"/>
 
     </StackLayout>
 </ContentPage>

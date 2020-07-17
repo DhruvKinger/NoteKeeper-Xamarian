@@ -5,6 +5,8 @@ using Xamarin.Forms.Xaml;
 
 using NoteKeeper.Models;
 using NoteKeeper.ViewModels;
+using System.Collections.Generic;
+using NoteKeeper.Services;
 
 namespace NoteKeeper.Views
 {
@@ -12,31 +14,37 @@ namespace NoteKeeper.Views
     public partial class ItemDetailPage : ContentPage
     {
         ItemDetailViewModel viewModel;
-        public Note Note { get; set; }
+
+        public IList<String> CourseList
+        {
+            get;set;
+        }
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
             InitializeData();
 
-            BindingContext = Note;
+            this.viewModel = viewModel;
+            BindingContext = this.viewModel;
+            NoteCourse.BindingContext = this;
         }
 
         public ItemDetailPage()
         {
             InitializeComponent();
             InitializeData();
+            viewModel = new ItemDetailViewModel();
 
-            BindingContext = Note;
+            BindingContext = viewModel;
+            NoteCourse.BindingContext = this;
         }
 
-        void InitializeData()
+        async void InitializeData()
         {
-            Note = new Note
-            {
-                Heading = "Text Note",
-                Text = "It's text !"
-            };
+            var datastore = new MockPluralsightDataStore();
+            CourseList = await datastore.GetCoursesAsync();
+            
 
         }
 
