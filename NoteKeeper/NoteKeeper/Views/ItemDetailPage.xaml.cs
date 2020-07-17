@@ -12,26 +12,43 @@ namespace NoteKeeper.Views
     public partial class ItemDetailPage : ContentPage
     {
         ItemDetailViewModel viewModel;
+        public Note Note { get; set; }
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
+            InitializeData();
 
-            BindingContext = this.viewModel = viewModel;
+            BindingContext = Note;
         }
 
         public ItemDetailPage()
         {
             InitializeComponent();
+            InitializeData();
 
-            var item = new Item
+            BindingContext = Note;
+        }
+
+        void InitializeData()
+        {
+            Note = new Note
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                Heading = "Text Note",
+                Text = "It's text !"
             };
 
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
+        }
+
+        public void Cancel_Clicked(Object Sender,EventArgs eventArgs)
+        {
+            DisplayAlert("Cancel Option", "Cancel was selected", "Button 2", "Button 1");
+        }
+
+        public void Save_Clicked(Object Sender, EventArgs eventArgs)
+        {
+            DisplayAlert("Save Option", "Save was selected", "Button 2", "Button 1");
         }
     }
 }
+
