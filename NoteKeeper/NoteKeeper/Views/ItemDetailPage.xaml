@@ -25,7 +25,7 @@
             
         </Picker>
         <!--<Label Text="Heading:" FontSize="Medium"/>-->
-        <Entry Text="{Binding Note.Heading}"
+        <Entry Text="{Binding NoteHeading}"
             x:Name="NoteHeading" 
                Placeholder="Note Heading" 
                FontSize="Medium"/>
